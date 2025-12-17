@@ -1,0 +1,45 @@
+/* project colors */
+.header__config {
+  color: #819981;
+  color: #eba158;
+  color: #ffe9d0;
+}
+
+/* styles */
+.header {
+  display: flex;
+  background-color: #ffe9d0;
+  width: 98vw;
+  height: 10vh;
+  padding: 2vh 0 2vh 4vh;
+}
+
+.header__logo {
+  height: 10vh;
+  width: 10vh;
+  margin-right: 4vh;
+  cursor: pointer;
+}
+
+.header__nav {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  margin-right: 2vh;
+  gap: 4vh;
+  color: #819981;
+  font-size: 25px;
+  font-family: "Pacifico", serif;
+}
+
+.header__nav-item a {
+  text-decoration: none;
+  color: #819981;
+}
+
+.header__nav-item:hover a {
+  color: #4a5a4a;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
