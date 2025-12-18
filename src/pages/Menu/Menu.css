@@ -1,0 +1,32 @@
+/* DELETE THIS */
+
+.header__config {
+  color: #819981;
+  color: #eba158;
+  color: #ffe9d0;
+}
+
+/* DELETE tHIS */
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffe9d0;
+}
+
+.menu__title {
+  margin-top: 10vh;
+  margin-bottom: 4vh;
+  font-family: "Pacifico", cursive;
+  font-size: 3rem;
+  color: #eba158;
+}
+
+.menu__cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0vw;
+  margin: 5vh 0;
+}

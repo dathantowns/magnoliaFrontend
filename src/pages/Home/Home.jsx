@@ -1,40 +1,50 @@
 import "./Home.css";
 import GiftCardImg from "../../assets/giftCardPic.png";
 import smoreImg from "../../assets/smoreBatch.png";
+import HomeCard from "../../components/HomeCard/HomeCard";
+import assBatch from "../../assets/assortedBatch.png";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
+  const navigate = useNavigate();
+
+  function openInNewTab(url) {
+    window.open(url, "_blank", "noopener,noreferrer");
+  }
+
   return (
     <>
-      <div className="home__order">
-        <h2 className="home__order-title">Discover your new favorite</h2>
-        <button className="home__order-btn">Order Now</button>
-      </div>
-      <div className="home__card home__card_gift">
-        <img src={GiftCardImg} alt="Gift Card" className="home__card-img" />
-        <div className="home__card-content">
-          <span className="home__card-title">
-            GIFT CARDS AVAILABLE FOR A LIMITED TIME!
-          </span>
-          <span className="home__card-text">
-            Treat someone special to a taste they’ll love. With our gift cards,
-            you’re giving more than food — you’re giving an experience.
-          </span>
-          <button className="home__card-btn">Buy A Gift Card</button>
-        </div>
-      </div>
-      <div className="home__card home__card_order">
-        <div className="home__card-content home__card-content_reverse">
-          <span className="home__card-title">YOUR FAVORITES, READY TO GO!</span>
-          <span className="home__card-text">
-            Skip the wait! Place your pickup order and we’ll have everything
-            ready and waiting when you arrive.
-          </span>
-          <button className="home__card-btn home__card-btn_order">
-            Start An Order
-          </button>
-        </div>
-        <img src={smoreImg} alt="Gift Card" className="home__card-img" />
-      </div>
+      <HomeCard
+        imgSrc={GiftCardImg}
+        imgAlt="Gift Card"
+        title="GIFT CARDS AVAILABLE FOR A LIMITED TIME!"
+        text="Treat someone special to a taste they’ll love. With our gift cards, you’re giving more than food — you’re giving an experience."
+        buttonText="Buy A Gift Card"
+        onButtonClick={() =>
+          openInNewTab("https://app.squareup.com/gift/MLNK2352HZ3VJ/order")
+        }
+        color="#819981"
+      />
+      <HomeCard
+        imgSrc={smoreImg}
+        imgAlt="Smore Img"
+        title="YOUR FAVORITES, READY TO GO!"
+        text="Skip the wait! Place your pickup order and we’ll have everything
+        ready and waiting when you arrive."
+        buttonText="Start An Order"
+        color="#eba158"
+        onButtonClick={() => navigate("/menu")}
+        variant="reverse"
+      />
+      <HomeCard
+        imgSrc={assBatch}
+        imgAlt="Gift Card"
+        title="Earn Rewards"
+        text="Earn rewards every time you order. The more you enjoy your favorites, the more perks you unlock."
+        buttonText="Rewards"
+        onButtonClick={() => navigate("/rewards")}
+        color="#819981"
+      />
     </>
   );
 }

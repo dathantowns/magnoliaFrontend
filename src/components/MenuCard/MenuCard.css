@@ -1,0 +1,31 @@
+.menu-card {
+  width: 30vw;
+  height: 30vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.menu-card__image {
+  width: 80%;
+  height: 80%;
+  object-fit: cover;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+}
+
+.menu-card__image:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.menu-card__title {
+  text-align: center;
+  margin-top: 2vh;
+  font-family: "Pacifico", sans-serif;
+  font-size: 2.5rem;
+  color: #eba158;
+  cursor: default;
+}
