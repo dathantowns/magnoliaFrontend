@@ -4,6 +4,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 4vh;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .menu-card__image {
@@ -25,7 +28,7 @@
   text-align: center;
   margin-top: 2vh;
   font-family: "Pacifico", sans-serif;
-  font-size: 2.5rem;
+  font-size: 2rem;
   color: #eba158;
   cursor: default;
 }

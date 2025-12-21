@@ -5,10 +5,12 @@ import Main from "./components/Main/Main";
 import "./App.css";
 
 function App() {
+  const [cart, setCart] = useState([]);
+
   return (
     <>
-      <Header />
-      <Main />
+      <Header cart={cart} />
+      <Main cart={cart} setCart={setCart} />
       <Footer />
     </>
   );

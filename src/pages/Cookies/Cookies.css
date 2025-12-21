@@ -13,10 +13,26 @@
   color: #eba158;
 }
 
+.cookies__nav-container {
+  position: relative;
+  left: -37vw;
+  font-size: 1.5rem;
+  font-family: "Oswald", sans-serif;
+}
+
+.cookies__nav {
+  cursor: pointer;
+  color: #819981;
+}
+
+.cookies__nav:hover {
+  color: #4a5a4a;
+  transition: all 0.3s ease;
+}
+
 .cookies__cards {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   gap: 0vw;
-  margin: 5vh 0;
+  margin: 5vh 8.5vh;
 }

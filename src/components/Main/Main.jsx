@@ -4,8 +4,9 @@ import Home from "../../pages/Home/Home";
 import Menu from "../../pages/Menu/Menu";
 import Drinks from "../../pages/Drinks/Drinks";
 import Cookies from "../../pages/Cookies/Cookies";
+import ItemScreen from "../ItemScreen/ItemScreen";
 
-function Main() {
+function Main({ cart, setCart }) {
   return (
     <>
       <Routes>
@@ -13,6 +14,10 @@ function Main() {
         <Route path="/menu" element={<Menu />} />
         <Route path="/menu/drinks" element={<Drinks />} />
         <Route path="/menu/cookies" element={<Cookies />} />
+        <Route
+          path="/:category/:itemSlug"
+          element={<ItemScreen cart={cart} setCart={setCart} />}
+        />
       </Routes>
     </>
   );
