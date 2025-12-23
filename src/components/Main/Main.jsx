@@ -5,6 +5,7 @@ import Menu from "../../pages/Menu/Menu";
 import Drinks from "../../pages/Drinks/Drinks";
 import Cookies from "../../pages/Cookies/Cookies";
 import ItemScreen from "../ItemScreen/ItemScreen";
+import Cart from "../../pages/Cart/Cart";
 
 function Main({ cart, setCart }) {
   return (
@@ -18,6 +19,10 @@ function Main({ cart, setCart }) {
           path="/:category/:itemSlug"
           element={<ItemScreen cart={cart} setCart={setCart} />}
         />
+        <Route
+          path="/cart"
+          element={<Cart cart={cart} setCart={setCart} />}
+        ></Route>
       </Routes>
     </>
   );

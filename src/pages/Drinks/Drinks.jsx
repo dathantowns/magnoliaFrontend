@@ -2,6 +2,7 @@ import "./Drinks.css";
 import MenuCard from "../../components/MenuCard/MenuCard";
 import { mockDrinks } from "../../mockItemDB";
 import { useNavigate } from "react-router-dom";
+import arrowIcon from "../../assets/arrow.png";
 
 function Drinks() {
   const navigate = useNavigate();
@@ -9,12 +10,12 @@ function Drinks() {
   return (
     <div className="drinks">
       <h1 className="drinks__title">Drinks</h1>
-      <div className="drinks__nav-container">
-        <span className="drinks__nav" onClick={() => navigate("/menu")}>
-          Menu /
-        </span>
-        <span className="drinks__nav"> Drinks</span>
-      </div>
+      <img
+        src={arrowIcon}
+        alt="arrow-back"
+        className="item-scrn__back-btn"
+        onClick={() => navigate(-1)}
+      />
       <div className="drinks__cards">
         {mockDrinks.map((drink, index) => (
           <MenuCard

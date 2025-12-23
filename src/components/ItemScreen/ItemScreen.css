@@ -11,6 +11,23 @@
   align-items: center;
 }
 
+.item-scrn__back-btn {
+  position: absolute;
+  top: 15vh;
+  left: 10vh;
+  color: #ffe9d0;
+  font-size: medium;
+  width: 40px;
+  opacity: 0.5;
+}
+
+.item-scrn__back-btn:hover {
+  opacity: 1;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 45px;
+}
+
 .item-scrn__img {
   width: 30%;
   height: 80%;
@@ -69,4 +86,90 @@
   width: 100%;
   height: 16vh;
   background-color: #ffe9d0;
+  display: flex;
+}
+
+.item-scrn__size-menu {
+  margin-left: 25vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.item-scrn__size-title {
+  font-family: "Oswald", sans-serif;
+  margin-top: 0;
+  margin-bottom: 1vh;
+  color: #819981;
+}
+
+.item-scrn__sizes {
+  display: flex;
+  gap: 20px;
+}
+
+.item-scrn__size-option {
+  background-color: #eba158;
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.item-scrn__size-option.grow {
+  transform: scale(2);
+  transition: transform 0.5s ease-in-out;
+}
+
+.item-scrn__size-option_active {
+  background-color: #819981;
+  color: #ffe9d0;
+}
+
+.item-scrn__size-option:hover {
+  background-color: #819981;
+}
+
+.item-scrn__cart-counter {
+  position: relative;
+  display: inline-block;
+}
+
+.item-scrn__cart-count {
+  position: absolute;
+  top: 30px;
+  right: 0;
+  background: #819981;
+  color: white;
+  border-radius: 50px;
+  padding: 2px 2px;
+  font-size: 0.75rem;
+  z-index: 1;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.5s;
+}
+
+.item-scrn__cart-count.grow {
+  transform: scale(2);
+}
+
+.item-scrn__cart-btn-img {
+  width: 70px;
+  height: 70px;
+  margin: 4vh auto 0 50vw;
+}
+
+.item-scrn__cart-btn-img:hover {
+  width: 75px;
+  height: 75px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }

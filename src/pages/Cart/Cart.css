@@ -1,0 +1,95 @@
+.cart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffe9d0;
+  width: 100vw;
+  min-height: 89vh;
+}
+
+.cart__title {
+  font-family: "pacifico", cursive;
+  font-size: 3rem;
+  color: #eba158;
+}
+
+.cart__empty-description {
+  font-family: "oswald", sans-serif;
+  font-size: 1.5rem;
+  color: #819981;
+}
+
+.cart__details {
+  display: flex;
+  align-items: center;
+}
+
+.cart__item {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  font-family: "oswald", sans-serif;
+  font-size: 16px;
+  padding: 2vh 4vh;
+  border-radius: 20px;
+  box-shadow: 0 5px 12px rgba(109, 83, 19, 0.461);
+  margin-bottom: 4vh;
+}
+
+.cart__item:hover {
+  scale: 1.02;
+  transition: all 0.3s ease;
+}
+
+.cart__item-trash-btn {
+  width: 30px;
+  height: 30px;
+  margin-right: 2vh;
+  position: absolute;
+}
+
+.cart__item-trash-btn:hover {
+  width: 35px;
+  height: 35px;
+}
+.cart__item-img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin: 0 2vh 0 5vw;
+}
+
+.cart__item-details {
+  color: #819981;
+}
+
+.cart__total-text {
+  font-family: "oswald", sans-serif;
+  font-size: 2rem;
+  color: #819981;
+  position: absolute;
+  left: 80vw;
+  top: 35vh;
+  text-decoration: underline;
+}
+
+.cart__btn {
+  position: absolute;
+  left: 80vw;
+  top: 50vh;
+  width: 150px;
+  height: 50px;
+  background-color: #eba158;
+  border: none;
+  border-radius: 30px;
+  font-family: "oswald", sans-serif;
+  font-size: 16px;
+}
+
+.cart__btn:hover {
+  background-color: #819981;
+  color: #ffe9d0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
