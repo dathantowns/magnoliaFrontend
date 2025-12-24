@@ -6,6 +6,7 @@ import Drinks from "../../pages/Drinks/Drinks";
 import Cookies from "../../pages/Cookies/Cookies";
 import ItemScreen from "../ItemScreen/ItemScreen";
 import Cart from "../../pages/Cart/Cart";
+import Contact from "../../pages/Contact/Contact";
 
 function Main({ cart, setCart }) {
   return (
@@ -23,6 +24,7 @@ function Main({ cart, setCart }) {
           path="/cart"
           element={<Cart cart={cart} setCart={setCart} />}
         ></Route>
+        <Route path="/contact" element={<Contact />}></Route>
       </Routes>
     </>
   );

@@ -57,7 +57,7 @@
 }
 
 .item-scrn__btn {
-  width: 100px;
+  width: 150px;
   height: 50px;
   display: flex;
   align-items: center;
@@ -66,20 +66,27 @@
   background-color: #ffe9d0;
   box-shadow: 0 5px 12px rgba(8, 65, 27, 0.461);
   cursor: pointer;
+  color: #819981;
+  padding: 0 1vw;
 }
 
 .item-scrn__btn:hover {
   background-color: #eba158;
-  width: 105px;
+  width: 155px;
   height: 60px;
-  color: white;
   transition: all 0.3s ease;
+  color: #ffe9d0;
 }
 
 .item-scrn__btn-img {
   width: 40px;
   height: 40px;
   margin-right: 1vh;
+}
+
+.item__screen-btn-text {
+  font-family: "Oswald", sans-serif;
+  font-size: 1.2rem;
 }
 
 .item-scrn__cart-container {

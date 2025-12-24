@@ -19,6 +19,24 @@
   color: #819981;
 }
 
+.cart__order-btn {
+  margin-top: 2vh;
+  padding: 1vh 2vh;
+  font-size: 16px;
+  font-family: "oswald", sans-serif;
+  background: none;
+  border: 2px solid #819981;
+  border-radius: 40px;
+  cursor: pointer;
+  color: #819981;
+}
+
+.cart__order-btn:hover {
+  background-color: #819981;
+  color: #ffe9d0;
+  transition: all 0.3s ease;
+}
+
 .cart__details {
   display: flex;
   align-items: center;
@@ -34,6 +52,7 @@
   border-radius: 20px;
   box-shadow: 0 5px 12px rgba(109, 83, 19, 0.461);
   margin-bottom: 4vh;
+  max-width: 28vw;
 }
 
 .cart__item:hover {
@@ -64,20 +83,31 @@
   color: #819981;
 }
 
+.cart__total {
+  box-shadow: 0 5px 12px rgba(109, 83, 19, 0.461);
+  width: 300px;
+  height: 200px;
+  position: absolute;
+  left: 72vw;
+  top: 37vh;
+  border-radius: 10px;
+  background-color: white;
+}
+
 .cart__total-text {
   font-family: "oswald", sans-serif;
   font-size: 2rem;
   color: #819981;
   position: absolute;
-  left: 80vw;
-  top: 35vh;
   text-decoration: underline;
+  top: 1vh;
+  left: 5vw;
 }
 
 .cart__btn {
   position: absolute;
-  left: 80vw;
-  top: 50vh;
+  top: 15vh;
+  left: 6vw;
   width: 150px;
   height: 50px;
   background-color: #eba158;
@@ -85,6 +115,7 @@
   border-radius: 30px;
   font-family: "oswald", sans-serif;
   font-size: 16px;
+  color: #ffe9d0;
 }
 
 .cart__btn:hover {

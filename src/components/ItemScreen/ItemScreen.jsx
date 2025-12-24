@@ -64,6 +64,7 @@ function ItemScreen({ cart, setCart }) {
           <p className="item-scrn__price">${item.price}</p>
           <div className="item-scrn__btn" onClick={() => handleAddToCart()}>
             <img src={bagIcon} alt="" className="item-scrn__btn-img" />
+            <p className="item__screen-btn-text">Add To Cart</p>
           </div>
         </div>
       </div>

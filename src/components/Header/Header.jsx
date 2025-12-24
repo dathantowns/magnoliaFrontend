@@ -32,6 +32,9 @@ function Header() {
           <li className="header__nav-item">
             <NavLink to="/contact">Contact</NavLink>
           </li>
+          <li className="header__nav-item">
+            <NavLink to="/about">About</NavLink>
+          </li>
         </ul>
         <span className="header__loc">
           <NavLink to="/about">Find Location </NavLink>

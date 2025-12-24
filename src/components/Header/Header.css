@@ -32,7 +32,7 @@
   align-items: center;
   padding: 0;
   margin-right: 2vh;
-  gap: 4vh;
+  gap: 5vh;
   color: #819981;
   font-size: 25px;
   font-family: "Pacifico", serif;
@@ -41,6 +41,7 @@
 .header__nav-item a {
   text-decoration: none;
   color: #819981;
+  white-space: nowrap;
 }
 
 .header__nav-item:hover a {
@@ -50,7 +51,7 @@
 }
 
 .header__loc {
-  margin-left: 35vw;
+  margin-left: 28vw;
 }
 
 .header__loc:hover a {

@@ -22,7 +22,12 @@ function Cart({ cart, setCart }) {
         onClick={() => navigate(-1)}
       />
       {cart.length === 0 ? (
-        <p className="cart__empty-description">Your cart is empty.</p>
+        <>
+          <p className="cart__empty-description">Your cart is empty.</p>
+          <button className="cart__order-btn" onClick={() => navigate("/menu")}>
+            Order Now
+          </button>
+        </>
       ) : (
         <div className="cart__details">
           <ul className="cart__items">
