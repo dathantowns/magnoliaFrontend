@@ -1,52 +1,62 @@
 import "./ItemScreen.css";
 import { useNavigate, useParams } from "react-router-dom";
-import { mockCookies, mockDrinks } from "../../mockItemDB";
 import bagIcon from "../../assets/paper-bag.png";
 import { useState, useEffect } from "react";
 import arrowIcon from "../../assets/arrow.png";
 
-function ItemScreen({ cart, setCart }) {
+function ItemScreen({ cart, setCart, selectedCategory, menu }) {
   const [size, setSize] = useState("");
   const [animateCart, setAnimateCart] = useState(false);
   const [animateSize, setAnimateSize] = useState(false);
-  const { category, itemSlug } = useParams();
-
+  const { id, product } = useParams();
   const navigate = useNavigate();
-
-  let data;
-  if (category === "cookies") data = mockCookies;
-  else if (category === "drinks") data = mockDrinks;
-  else return <div>Category not found</div>;
-
-  const item = data.find(
-    (i) => i.title.toLowerCase().replace(/ /g, "-") === itemSlug
-  );
-
-  if (!item) return <div>Item not found</div>;
-
-  function handleAddToCart() {
-    if (category === "drinks" && size === "") {
-      setAnimateSize(true);
-      const timeout = setTimeout(() => setAnimateSize(false), 500); // match animation duration
-      return () => clearTimeout(timeout);
-    }
-    const cartItem = {
-      ...item,
-      size: size,
-    };
-    setCart([...cart, cartItem]);
-    console.log(`${item.title} (${size}) added to cart`);
-  }
-
-  function handleSizeSelect(selectedSize) {
-    setSize(selectedSize);
-  }
 
   useEffect(() => {
     setAnimateCart(true);
     const timeout = setTimeout(() => setAnimateCart(false), 500); // match animation duration
     return () => clearTimeout(timeout);
   }, [cart]);
+
+  if (!menu) {
+    return <div>Loading...</div>;
+  }
+
+  if (!selectedCategory) {
+    selectedCategory = product
+      .split("-")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+  }
+
+  let item;
+
+  for (const category of menu.categories) {
+    item = category.products.find(
+      (product) => product.id.toString() === id.toString()
+    );
+    if (item) break;
+  }
+
+  if (!item) return <div>Item not found</div>;
+
+  function handleAddToCart() {
+    if (selectedCategory === "Drinks" && size === "") {
+      setAnimateSize(true);
+      setTimeout(() => setAnimateSize(false), 500);
+      return;
+    }
+
+    const cartItem = {
+      ...item,
+      size: size,
+      instanceId: Date.now() + Math.random(),
+    };
+    setCart([...cart, cartItem]);
+  }
+
+  function handleSizeSelect(selectedSize) {
+    setSize(selectedSize);
+  }
 
   return (
     <div className="item-scrn">
@@ -58,7 +68,7 @@ function ItemScreen({ cart, setCart }) {
           onClick={() => navigate(-1)}
         />
 
-        <img className="item-scrn__img" src={item.img} alt="" />
+        <img className="item-scrn__img" src={item.image} alt="" />
         <div className="item-scrn__name-price">
           <h1 className="item-scrn__title">{item.title}</h1>
           <p className="item-scrn__price">${item.price}</p>
@@ -69,7 +79,7 @@ function ItemScreen({ cart, setCart }) {
         </div>
       </div>
       <div className="item-scrn__cart-container">
-        {category === "drinks" && (
+        {selectedCategory === "Drinks" && (
           <div className="item-scrn__size-menu">
             <h2 className="item-scrn__size-title">Size Options</h2>
             <div className="item-scrn__sizes">

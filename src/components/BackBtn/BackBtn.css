@@ -1,0 +1,16 @@
+.back-btn {
+  position: absolute;
+  top: 15vh;
+  left: 10vh;
+  color: #ffe9d0;
+  font-size: medium;
+  width: 40px;
+  opacity: 0.5;
+}
+
+.back-btn:hover {
+  opacity: 1;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 45px;
+}

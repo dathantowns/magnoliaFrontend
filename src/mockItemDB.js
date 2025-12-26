@@ -8,17 +8,85 @@ import snickersImg from "./assets/drink3.jpeg";
 import macchiatoImg from "./assets/drink4.jpeg";
 
 const mockCookies = [
-  { title: "S'mores Cookie", img: smoreCookieImg, price: 9.99 },
-  { title: "Stuffed Oreo Cookie", img: oreoImg, price: 9.99 },
-  { title: "Chocolate Cookie", img: chocolateCookie, price: 9.99 },
-  { title: "Biscoff Cookie", img: biscoffCookie, price: 9.99 },
+  {
+    id: 1,
+    title: "S'mores Cookie",
+    image: smoreCookieImg,
+    price: 9.99,
+    isAvailable: true,
+    categoryId: 9,
+  },
+  {
+    id: 2,
+    title: "Stuffed Oreo Cookie",
+    image: oreoImg,
+    price: 9.99,
+    isAvailable: true,
+    categoryId: 9,
+  },
+  {
+    id: 3,
+    title: "Chocolate Cookie",
+    image: chocolateCookie,
+    price: 9.99,
+    isAvailable: true,
+    categoryId: 9,
+  },
+  {
+    id: 4,
+    title: "Biscoff Cookie",
+    image: biscoffCookie,
+    price: 9.99,
+    isAvailable: true,
+    categoryId: 9,
+  },
 ];
 
 const mockDrinks = [
-  { title: "Peppermint Chocolate Shake", img: peppermintImg, price: 9.99 },
-  { title: "Iced Latte", img: latteImg, price: 9.99 },
-  { title: "Snickers Chocolate Milk", img: snickersImg, price: 9.99 },
-  { title: "Caramel Iced Macchiato", img: macchiatoImg, price: 9.99 },
+  {
+    id: 5,
+    title: "Peppermint Chocolate Shake",
+    image: peppermintImg,
+    price: 9.99,
+    isAvailable: true,
+    categoryId: 10,
+  },
+  {
+    id: 6,
+    title: "Iced Latte",
+    image: latteImg,
+    price: 9.99,
+    isAvailable: true,
+    categoryId: 10,
+  },
+  {
+    id: 7,
+    title: "Snickers Chocolate Milk",
+    image: snickersImg,
+    price: 9.99,
+    isAvailable: true,
+    categoryId: 10,
+  },
+  {
+    id: 8,
+    title: "Caramel Iced Macchiato",
+    image: macchiatoImg,
+    price: 9.99,
+    isAvailable: true,
+    categoryId: 10,
+  },
 ];
 
-export { mockCookies, mockDrinks };
+const mockCategories = [
+  { id: 9, title: "Cookies", image: smoreCookieImg, products: mockCookies },
+  { id: 10, title: "Drinks", image: peppermintImg, products: mockDrinks },
+  // { id: 12, title: "Specials", image: latteImg, products: mockDrinks },
+];
+
+const mockMenu = {
+  id: 11,
+  title: "Main Menu",
+  categories: mockCategories,
+};
+
+export default mockMenu;

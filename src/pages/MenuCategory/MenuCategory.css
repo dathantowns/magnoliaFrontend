@@ -1,36 +1,37 @@
-.cookies {
+.menu-category {
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: #ffe9d0;
+  min-height: 88vh;
 }
 
-.cookies__title {
-  margin-top: 10vh;
+.menu-category__title {
+  margin-top: 5vh;
   margin-bottom: 4vh;
   font-family: "Pacifico", cursive;
   font-size: 3rem;
   color: #eba158;
 }
 
-.cookies__nav-container {
+.menu-category__nav-container {
   position: relative;
   left: -37vw;
   font-size: 1.5rem;
   font-family: "Oswald", sans-serif;
 }
 
-.cookies__nav {
+.menu-category__nav {
   cursor: pointer;
   color: #819981;
 }
 
-.cookies__nav:hover {
+.menu-category__nav:hover {
   color: #4a5a4a;
   transition: all 0.3s ease;
 }
 
-.cookies__cards {
+.menu-category__cards {
   display: flex;
   flex-wrap: wrap;
   gap: 0vw;

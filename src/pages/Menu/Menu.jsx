@@ -1,15 +1,23 @@
 import "./Menu.css";
 import MenuCard from "../../components/MenuCard/MenuCard";
-import cookiesImage from "../../assets/smoreBatch.png";
-import drinksImage from "../../assets/drink1.png";
+function Menu({ menu, selectedCategory, setSelectedCategory }) {
+  if (!menu) {
+    return <div>Loading...</div>;
+  }
 
-function Menu() {
   return (
     <div className="menu">
       <h1 className="menu__title">Menu</h1>
       <div className="menu__cards">
-        <MenuCard title="Cookies" img={cookiesImage} url="/menu/cookies" />
-        <MenuCard title="Drinks" img={drinksImage} url="/menu/drinks" />
+        {menu.categories.map((category, index) => (
+          <MenuCard
+            key={index}
+            title={category.title}
+            image={category.image}
+            url={`/menu/${category.title.toLowerCase().replace(/ /g, "-")}`}
+            setSelectedCategory={setSelectedCategory}
+          />
+        ))}
       </div>
     </div>
   );

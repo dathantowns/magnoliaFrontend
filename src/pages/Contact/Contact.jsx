@@ -1,3 +1,4 @@
+import "./Contact.css";
 import { useState } from "react";
 
 export default function Contact() {
@@ -22,17 +23,18 @@ export default function Contact() {
   };
 
   return (
-    <div>
-      <h1>Contact Us</h1>
-      <p>
+    <div className="contact">
+      <h1 className="contact__title">Contact Us</h1>
+      <p className="contact__description">
         Have a question about our menu, catering, business opportunities, or
         anything else? Leave us a message and our team will be happy to help.
       </p>
 
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Name</label>
+      <form className="contact__form" onSubmit={handleSubmit}>
+        <div className="contact__form-field">
+          <label className="contact__form-label">Name:</label>
           <input
+            className="contact__form-input"
             type="text"
             name="name"
             value={form.name}
@@ -41,9 +43,10 @@ export default function Contact() {
           />
         </div>
 
-        <div>
-          <label>Email</label>
+        <div className="contact__form-field">
+          <label className="contact__form-label">Email:</label>
           <input
+            className="contact__form-input"
             type="email"
             name="email"
             value={form.email}
@@ -52,9 +55,10 @@ export default function Contact() {
           />
         </div>
 
-        <div>
-          <label>Message</label>
+        <div className="contact__message-field">
+          <label className="contact__form-label">Message:</label>
           <textarea
+            className="contact__message-input"
             name="message"
             value={form.message}
             onChange={handleChange}
@@ -63,7 +67,9 @@ export default function Contact() {
           />
         </div>
 
-        <button type="submit">Send Message</button>
+        <button className="contact__submit-btn" type="submit">
+          Send Message
+        </button>
       </form>
     </div>
   );

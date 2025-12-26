@@ -1,0 +1,46 @@
+.about {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffe9d0;
+  align-items: center;
+  width: 100vw;
+  min-height: 89vh;
+}
+
+.about__title {
+  margin-top: 5vh;
+  margin-bottom: 4vh;
+  font-family: "Pacifico", cursive;
+  font-size: 3rem;
+  color: #eba158;
+}
+
+.about__image {
+  width: 60vw;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-bottom: 4vh;
+}
+
+.about__header {
+  font-family: "Oswald", sans-serif;
+  font-size: 2.5rem;
+  color: #4a5a4a;
+  margin-bottom: 2vh;
+}
+
+.about__subheader {
+  font-family: "Oswald", sans-serif;
+  font-size: 2rem;
+  color: #4a5a4a;
+  margin-top: 0;
+}
+
+.about__text {
+  width: 60vw;
+  font-family: "Oswald", sans-serif;
+  font-size: 1.5rem;
+  color: #4a5a4a;
+  line-height: 1.6;
+  margin-bottom: 5vh;
+}
