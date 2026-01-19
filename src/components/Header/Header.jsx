@@ -3,7 +3,7 @@ import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import lightLogo from "../../assets/lightlogo.png";
 import locIcon from "../../assets/location.png";
 
-function Header() {
+function Header({ setSeeLoginModal, setSeeRegisterModal }) {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -41,8 +41,18 @@ function Header() {
           <img src={locIcon} alt="Location Icon" className="header__loc-icon" />
         </span>
         <div className="header__account-container">
-          <button className="header__btn">Join Now</button>
-          <button className="header__btn header__btn_alt">Sign In</button>
+          <button
+            className="header__btn"
+            onClick={() => setSeeRegisterModal(true)}
+          >
+            Join Now
+          </button>
+          <button
+            className="header__btn header__btn_alt"
+            onClick={() => setSeeLoginModal(true)}
+          >
+            Log In
+          </button>
         </div>
       </div>
       {location.pathname === "/" && (
