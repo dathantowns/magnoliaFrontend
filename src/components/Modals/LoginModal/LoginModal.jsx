@@ -1,27 +1,87 @@
 import { useState, useEffect } from "react";
+import { useUser } from "../../../../utils/contexts/userContext";
+import { login, checkToken } from "../../../../utils/auth";
 import ModalWithForm from "../../ModalWithForm/ModalWithForm";
 import "./LoginModal.css";
 
-const LoginModal = ({
-  closeModal,
-  seeModal,
-  handleLoginSubmit,
-  openRegisterModal,
-}) => {
+const LoginModal = ({ closeModal, seeModal, openRegisterModal }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const { setUser, setIsLoggedIn, setToken } = useUser();
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
+    setError(""); // Clear error when user starts typing
   };
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
+    setError(""); // Clear error when user starts typing
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
+    console.log(
+      "handleSubmit called with email:",
+      email,
+      "password:",
+      password,
+    ); // Debug log
     e.preventDefault();
-    handleLoginSubmit({ email, password });
+    setIsLoading(true);
+    setError("");
+
+    try {
+      const data = await login({ email, password });
+      console.log("Login response:", data); // Debug log
+
+      let userData = null;
+      // Get user data using the token
+      try {
+        userData = await checkToken(data.token);
+        console.log("User data:", userData); // Debug log
+
+        // Save user data to context
+        setUser({
+          name: userData.data.name,
+          email: userData.data.email,
+          phone: userData.data.phone,
+          id: userData.data._id,
+        });
+      } catch (userDataError) {
+        console.error("Error fetching user data:", userDataError);
+        // Still set as logged in with just the token
+      }
+
+      setToken(data.token);
+      setIsLoggedIn(true);
+
+      // Save to localStorage
+      localStorage.setItem("token", data.token);
+      if (userData) {
+        localStorage.setItem(
+          "user",
+          JSON.stringify({
+            name: userData.data.name,
+            email: userData.data.email,
+            phone: userData.data.phone,
+            id: userData.data._id,
+          }),
+        );
+      }
+
+      // Close modal and reset form
+      closeModal();
+      setEmail("");
+      setPassword("");
+    } catch (err) {
+      setError(err.message || "Login failed. Please try again.");
+      console.error("Login error:", err);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   // Reset form when modal opens
@@ -29,6 +89,8 @@ const LoginModal = ({
     if (seeModal) {
       setEmail("");
       setPassword("");
+      setError("");
+      setIsLoading(false);
     }
   }, [seeModal]);
 
@@ -45,8 +107,10 @@ const LoginModal = ({
       name="login-form"
       formId="login-form"
       handleFormSubmit={handleSubmit}
-      buttonText="Log in"
+      buttonText={isLoading ? "Logging in..." : "Log in"}
+      isDisabled={isLoading}
     >
+      {error && <div className="login-modal__error">{error}</div>}
       <label htmlFor="login-email-input" className="login-modal__label">
         Email
         <input

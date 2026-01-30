@@ -78,6 +78,14 @@
   gap: 2vh;
   margin-right: 4vh;
 }
+
+.header__user-greeting {
+  font-family: "Oswald", sans-serif;
+  font-size: 16px;
+  color: #819981;
+  font-weight: 500;
+}
+
 .header__btn {
   width: 80px;
   height: 40px;

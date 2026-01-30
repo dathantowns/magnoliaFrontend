@@ -10,44 +10,13 @@ const baseUrl =
     ? "https://your-production-url.com"
     : "http://localhost:3001";
 
-const getItems = fetch(`${baseUrl}/items`).then((res) => res.json());
-
-const createUser = (userData) => {
-  return fetch(`${baseUrl}/createUser`, {
-    method: "POST",
+const getMenu = () => {
+  return fetch(`${baseUrl}/menus/696840c632cbc71968447a2c`, {
+    method: "GET",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(userData),
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      if (data.token) {
-        localStorage.setItem("token", data.token);
-      }
-    })
-    .catch((error) => {
-      console.error("Error creating user:", error);
-    });
-};
-
-const loginUser = (credentials) => {
-  return fetch(`${baseUrl}/login`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(credentials),
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      if (data.token) {
-        localStorage.setItem("token", data.token);
-      }
-    })
-    .catch((error) => {
-      console.error("Error logging in:", error);
-    });
+  }).then(checkRes);
 };
 
 function getUserData(token) {
@@ -78,14 +47,6 @@ const sendOrder = (orderData) => {
 
 const getToken = () => localStorage.getItem("jwt");
 
-export {
-  getItems,
-  createUser,
-  loginUser,
-  sendOrder,
-  baseUrl,
-  getToken,
-  getUserData,
-};
+export { getMenu, sendOrder, baseUrl, getToken, getUserData };
 
 // TODAY: Create api functions to interact with backend server

@@ -1,32 +1,80 @@
 import { useState, useEffect } from "react";
+import { useUser } from "../../../../utils/contexts/userContext";
+import { register } from "../../../../utils/auth";
 import ModalWithForm from "../../ModalWithForm/ModalWithForm";
 import "./RegisterModal.css";
 
-const RegisterModal = ({
-  closeModal,
-  seeModal,
-  handleRegisterSubmit,
-  openLoginModal,
-}) => {
+const RegisterModal = ({ closeModal, seeModal, openLoginModal }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [phone, setPhone] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const { setUser, setIsLoggedIn, setToken } = useUser();
 
   const handleNameChange = (e) => {
     setName(e.target.value);
+    setError(""); // Clear error when user starts typing
   };
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
+    setError(""); // Clear error when user starts typing
   };
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
+    setError(""); // Clear error when user starts typing
   };
 
-  const handleSubmit = (e) => {
+  const handlePhoneChange = (e) => {
+    setPhone(e.target.value);
+    setError(""); // Clear error when user starts typing
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    handleRegisterSubmit({ name, email, password });
+    setIsLoading(true);
+    setError("");
+
+    try {
+      const data = await register({ name, email, password, phone });
+
+      // Save user data to context
+      setUser({
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        id: data._id,
+      });
+      // No token returned from registration endpoint
+      setIsLoggedIn(true);
+
+      // Save to localStorage
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          name: data.name,
+          email: data.email,
+          phone: data.phone,
+          id: data._id,
+        }),
+      );
+
+      // Close modal and reset form
+      closeModal();
+      setName("");
+      setEmail("");
+      setPassword("");
+      setPhone("");
+    } catch (err) {
+      setError(err.message || "Registration failed. Please try again.");
+      console.error("Registration error:", err);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   // Reset form when modal opens
@@ -35,6 +83,9 @@ const RegisterModal = ({
       setName("");
       setEmail("");
       setPassword("");
+      setPhone("");
+      setError("");
+      setIsLoading(false);
     }
   }, [seeModal]);
 
@@ -51,8 +102,10 @@ const RegisterModal = ({
       name="register-modal__form"
       formId="register-modal__form"
       handleFormSubmit={handleSubmit}
-      buttonText="Next"
+      buttonText={isLoading ? "Creating Account..." : "Next"}
+      isDisabled={isLoading}
     >
+      {error && <div className="register-modal__error">{error}</div>}
       <label htmlFor="email-input" className="register-modal__label">
         Email*
         <input
@@ -96,6 +149,20 @@ const RegisterModal = ({
           maxLength="30"
         />
         <span className="register-modal__input-error" id="name-error"></span>
+      </label>
+      <label htmlFor="phone-input" className="register-modal__label">
+        Phone
+        <input
+          type="tel"
+          className="register-modal__input"
+          id="register-phone-input"
+          placeholder="Phone Number"
+          value={phone}
+          onChange={handlePhoneChange}
+          minLength="10"
+          maxLength="15"
+        />
+        <span className="register-modal__input-error" id="phone-error"></span>
       </label>
 
       <button

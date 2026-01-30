@@ -1,11 +1,25 @@
 import "./Header.css";
 import { NavLink, useNavigate, useLocation } from "react-router-dom";
+import { useUser } from "../../../utils/contexts/userContext";
 import lightLogo from "../../assets/lightlogo.png";
 import locIcon from "../../assets/location.png";
 
 function Header({ setSeeLoginModal, setSeeRegisterModal }) {
   const navigate = useNavigate();
   const location = useLocation();
+  const { user, isLoggedIn, setUser, setIsLoggedIn, setToken } = useUser();
+
+  // Debug logging
+  console.log("Header - isLoggedIn:", isLoggedIn);
+  console.log("Header - user:", user);
+
+  const handleLogout = () => {
+    setUser(null);
+    setIsLoggedIn(false);
+    setToken(null);
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+  };
 
   return (
     <>
@@ -41,18 +55,31 @@ function Header({ setSeeLoginModal, setSeeRegisterModal }) {
           <img src={locIcon} alt="Location Icon" className="header__loc-icon" />
         </span>
         <div className="header__account-container">
-          <button
-            className="header__btn"
-            onClick={() => setSeeRegisterModal(true)}
-          >
-            Join Now
-          </button>
-          <button
-            className="header__btn header__btn_alt"
-            onClick={() => setSeeLoginModal(true)}
-          >
-            Log In
-          </button>
+          {isLoggedIn ? (
+            <>
+              <span className="header__user-greeting">
+                Hello, {user?.name || user?.email || "User"}
+              </span>
+              <button className="header__btn" onClick={handleLogout}>
+                Log Out
+              </button>
+            </>
+          ) : (
+            <>
+              <button
+                className="header__btn"
+                onClick={() => setSeeRegisterModal(true)}
+              >
+                Join Now
+              </button>
+              <button
+                className="header__btn header__btn_alt"
+                onClick={() => setSeeLoginModal(true)}
+              >
+                Log In
+              </button>
+            </>
+          )}
         </div>
       </div>
       {location.pathname === "/" && (

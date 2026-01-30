@@ -5,8 +5,9 @@ import Main from "./components/Main/Main";
 import mockMenu from "./mockItemDB";
 import LoginModal from "./components/Modals/LoginModal/LoginModal";
 import RegisterModal from "./components/Modals/RegisterModal/RegisterModal";
-import { getUserData } from "../utils/api";
+import { getUserData, getMenu } from "../utils/api";
 import { login, register } from "../utils/auth";
+import { UserProvider } from "../utils/contexts/userContext";
 import "./App.css";
 
 function App() {
@@ -21,8 +22,14 @@ function App() {
   console.log("App.jsx rendered");
 
   useEffect(() => {
-    setMenu(mockMenu);
-    console.log(`Menu loaded: ${mockMenu.categories}`);
+    getMenu()
+      .then((menuData) => {
+        setMenu(menuData);
+        console.log("Menu data fetched:", menuData);
+      })
+      .catch((error) => {
+        console.error("Failed to fetch menu:", error);
+      });
   }, []);
 
   //RegisterModal functions
@@ -100,33 +107,35 @@ function App() {
 
   return (
     <>
-      <Header
-        cart={cart}
-        setSeeLoginModal={setSeeLoginModal}
-        setSeeRegisterModal={setSeeRegisterModal}
-      />
-      <Main
-        cart={cart}
-        setCart={setCart}
-        menu={menu}
-        selectedCategory={selectedCategory}
-        setSelectedCategory={setSelectedCategory}
-      />
-      <Footer />
+      <UserProvider>
+        <Header
+          cart={cart}
+          setSeeLoginModal={setSeeLoginModal}
+          setSeeRegisterModal={setSeeRegisterModal}
+        />
+        <Main
+          cart={cart}
+          setCart={setCart}
+          menu={menu}
+          selectedCategory={selectedCategory}
+          setSelectedCategory={setSelectedCategory}
+        />
+        <Footer />
 
-      <LoginModal
-        closeModal={onClose}
-        seeModal={seeLoginModal}
-        handleLoginSubmit={handleLoginSubmit}
-        openRegisterModal={openRegisterModal}
-      />
+        <LoginModal
+          closeModal={onClose}
+          seeModal={seeLoginModal}
+          handleLoginSubmit={handleLoginSubmit}
+          openRegisterModal={openRegisterModal}
+        />
 
-      <RegisterModal
-        closeModal={onClose}
-        seeModal={seeRegisterModal}
-        handleRegisterSubmit={handleRegisterSubmit}
-        openLoginModal={openLoginModal}
-      />
+        <RegisterModal
+          closeModal={onClose}
+          seeModal={seeRegisterModal}
+          handleRegisterSubmit={handleRegisterSubmit}
+          openLoginModal={openLoginModal}
+        />
+      </UserProvider>
     </>
   );
 }
