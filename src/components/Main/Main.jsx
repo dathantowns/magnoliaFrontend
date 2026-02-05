@@ -24,7 +24,13 @@ function Main({ cart, setCart, menu, selectedCategory, setSelectedCategory }) {
           }
         />
         <Route
-          path="/menu/:product/:id"
+          path="/menu/:category"
+          element={
+            <MenuCategory selectedCategory={selectedCategory} menu={menu} />
+          }
+        />
+        <Route
+          path="/menu/:category/:id"
           element={
             <ItemScreen
               cart={cart}
@@ -32,12 +38,6 @@ function Main({ cart, setCart, menu, selectedCategory, setSelectedCategory }) {
               selectedCategory={selectedCategory}
               menu={menu}
             />
-          }
-        />
-        <Route
-          path="/menu/:category"
-          element={
-            <MenuCategory selectedCategory={selectedCategory} menu={menu} />
           }
         />
 

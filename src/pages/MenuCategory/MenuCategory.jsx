@@ -18,7 +18,6 @@ function MenuCategory({ menu, selectedCategory }) {
       .join(" ");
   }
   const navigate = useNavigate();
-  console.log("selectedCategory in MenuCategory: ", selectedCategory);
 
   return (
     <div className="menu-category">
@@ -32,9 +31,7 @@ function MenuCategory({ menu, selectedCategory }) {
               key={index}
               title={product.title}
               image={product.image}
-              url={`/menu/${product.title.toLowerCase().replace(/ /g, "-")}/${
-                product.id
-              }`}
+              url={`/menu/${selectedCategory.toLowerCase().replace(/ /g, "-")}/${product.title.toLowerCase().replace(/ /g, "-")}`}
             />
           ))}
       </div>

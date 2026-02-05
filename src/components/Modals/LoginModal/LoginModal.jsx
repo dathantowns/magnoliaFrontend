@@ -23,25 +23,17 @@ const LoginModal = ({ closeModal, seeModal, openRegisterModal }) => {
   };
 
   const handleSubmit = async (e) => {
-    console.log(
-      "handleSubmit called with email:",
-      email,
-      "password:",
-      password,
-    ); // Debug log
     e.preventDefault();
     setIsLoading(true);
     setError("");
 
     try {
       const data = await login({ email, password });
-      console.log("Login response:", data); // Debug log
 
       let userData = null;
       // Get user data using the token
       try {
         userData = await checkToken(data.token);
-        console.log("User data:", userData); // Debug log
 
         // Save user data to context
         setUser({

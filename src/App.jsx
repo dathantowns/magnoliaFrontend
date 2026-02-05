@@ -19,13 +19,10 @@ function App() {
   const [seeLoginModal, setSeeLoginModal] = useState(false);
   const [seeRegisterModal, setSeeRegisterModal] = useState(false);
 
-  console.log("App.jsx rendered");
-
   useEffect(() => {
     getMenu()
       .then((menuData) => {
         setMenu(menuData);
-        console.log("Menu data fetched:", menuData);
       })
       .catch((error) => {
         console.error("Failed to fetch menu:", error);
@@ -40,7 +37,6 @@ function App() {
   const handleRegisterSubmit = (userData) => {
     register(userData)
       .then((registrationResponse) => {
-        console.log("Registration successful:", registrationResponse);
         return login({ email: userData.email, password: userData.password });
       })
       .then((loginData) => {
@@ -52,10 +48,6 @@ function App() {
         if (token) {
           getUserData(token)
             .then((userDataResponse) => {
-              console.log(
-                "User data fetched after registration:",
-                userDataResponse,
-              );
               setCurrentUser(userDataResponse.data);
               setIsLoggedIn(true);
             })
@@ -84,7 +76,6 @@ function App() {
         if (token) {
           getUserData(token)
             .then((userData) => {
-              console.log("User data fetched after login:", userData);
               setCurrentUser(userData.data);
               const redirectPath = routerLocation.state?.from?.pathname || "/";
               navigate(redirectPath, { replace: true });

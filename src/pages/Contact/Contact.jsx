@@ -17,7 +17,6 @@ export default function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form submitted:", form);
     // TODO: send to backend or email service
     setForm({ name: "", email: "", message: "" });
   };

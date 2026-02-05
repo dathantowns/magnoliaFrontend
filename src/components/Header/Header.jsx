@@ -9,10 +9,6 @@ function Header({ setSeeLoginModal, setSeeRegisterModal }) {
   const location = useLocation();
   const { user, isLoggedIn, setUser, setIsLoggedIn, setToken } = useUser();
 
-  // Debug logging
-  console.log("Header - isLoggedIn:", isLoggedIn);
-  console.log("Header - user:", user);
-
   const handleLogout = () => {
     setUser(null);
     setIsLoggedIn(false);

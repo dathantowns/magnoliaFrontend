@@ -8,7 +8,7 @@ function ItemScreen({ cart, setCart, selectedCategory, menu }) {
   const [size, setSize] = useState("");
   const [animateCart, setAnimateCart] = useState(false);
   const [animateSize, setAnimateSize] = useState(false);
-  const { id, product } = useParams();
+  const { id, category } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -22,7 +22,7 @@ function ItemScreen({ cart, setCart, selectedCategory, menu }) {
   }
 
   if (!selectedCategory) {
-    selectedCategory = product
+    selectedCategory = category
       .split("-")
       .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
       .join(" ");
@@ -32,7 +32,8 @@ function ItemScreen({ cart, setCart, selectedCategory, menu }) {
 
   for (const category of menu.categories) {
     item = category.products.find(
-      (product) => product.id.toString() === id.toString()
+      (product) =>
+        product.title.toLowerCase().replace(/ /g, "-") === id.toString(),
     );
     if (item) break;
   }
