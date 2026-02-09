@@ -1,5 +1,6 @@
 import "./Contact.css";
 import { useState } from "react";
+import { sendMessage } from "../../../utils/api";
 
 export default function Contact() {
   const [form, setForm] = useState({
@@ -7,6 +8,8 @@ export default function Contact() {
     email: "",
     message: "",
   });
+  const [submitStatus, setSubmitStatus] = useState(null);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleChange = (e) => {
     setForm({
@@ -17,8 +20,25 @@ export default function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // TODO: send to backend or email service
-    setForm({ name: "", email: "", message: "" });
+
+    if (form.message.length < 10) {
+      setSubmitStatus("error");
+      setErrorMessage("Message must be at least 10 characters long.");
+      return;
+    }
+
+    sendMessage(form)
+      .then((response) => {
+        console.log("Message sent successfully:", response);
+        setSubmitStatus("success");
+        setErrorMessage("");
+        setForm({ name: "", email: "", message: "" });
+      })
+      .catch((error) => {
+        console.error("Error sending message:", error);
+        setSubmitStatus("error");
+        setErrorMessage("Failed to send message. Please try again later.");
+      });
   };
 
   return (
@@ -28,6 +48,15 @@ export default function Contact() {
         Have a question about our menu, catering, business opportunities, or
         anything else? Leave us a message and our team will be happy to help.
       </p>
+
+      {submitStatus === "success" && (
+        <p className="contact__success-message">
+          Message sent successfully! We'll get back to you soon.
+        </p>
+      )}
+      {submitStatus === "error" && (
+        <p className="contact__error-message">{errorMessage}</p>
+      )}
 
       <form className="contact__form" onSubmit={handleSubmit}>
         <div className="contact__form-field">

@@ -19,6 +19,20 @@
   color: #819981;
 }
 
+.cart__pickup-noitfication {
+  font-family: "oswald", sans-serif;
+  font-size: 1.2rem;
+  color: #eba158;
+  margin-top: 2vh;
+}
+
+.cart__pickup-address {
+  font-family: "oswald", sans-serif;
+  font-size: 1.2rem;
+  color: #819981;
+  margin-top: 1vh;
+}
+
 .cart__order-btn {
   margin-top: 2vh;
   padding: 1vh 2vh;
@@ -86,7 +100,7 @@
 .cart__total {
   box-shadow: 0 5px 12px rgba(109, 83, 19, 0.461);
   width: 300px;
-  height: 200px;
+  height: 320px;
   position: absolute;
   left: 72vw;
   top: 37vh;
@@ -104,9 +118,59 @@
   left: 5vw;
 }
 
+.cart__name-input-container {
+  position: absolute;
+  top: 13vh;
+  left: 3vw;
+  width: 200px;
+}
+
+.cart__name-input {
+  width: 100%;
+  padding: 10px;
+  font-family: "oswald", sans-serif;
+  font-size: 16px;
+  border: 2px solid #819981;
+  border-radius: 30px;
+  outline: none;
+  background-color: #ffe9d0;
+  color: #819981;
+  margin-bottom: 4vh;
+}
+
+.cart__name-input::placeholder {
+  color: #819981;
+  opacity: 0.7;
+}
+
+.cart__name-input_error {
+  border-color: #eba158;
+}
+
+.cart__name-error {
+  font-family: "oswald", sans-serif;
+  font-size: 12px;
+  color: #eba158;
+  top: 35px;
+  position: absolute;
+  width: 200px;
+  background-color: none;
+  padding-left: 5px;
+}
+
+.cart__phone-error {
+  font-family: "oswald", sans-serif;
+  font-size: 12px;
+  color: #eba158;
+  position: absolute;
+  top: 92px;
+  width: 200px;
+  padding-left: 5px;
+}
+
 .cart__btn {
   position: absolute;
-  top: 15vh;
+  top: 35vh;
   left: 6vw;
   width: 150px;
   height: 50px;
@@ -114,8 +178,6 @@
   border: none;
   border-radius: 30px;
   font-family: "oswald", sans-serif;
-  font-size: 16px;
-  color: #ffe9d0;
 }
 
 .cart__btn:hover {

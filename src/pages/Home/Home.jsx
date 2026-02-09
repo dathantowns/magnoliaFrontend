@@ -36,7 +36,7 @@ function Home() {
         onButtonClick={() => navigate("/menu")}
         variant="reverse"
       />
-      <HomeCard
+      {/* <HomeCard
         imgSrc={assBatch}
         imgAlt="Gift Card"
         title="Earn Rewards"
@@ -44,7 +44,7 @@ function Home() {
         buttonText="Rewards"
         onButtonClick={() => navigate("/rewards")}
         color="#819981"
-      />
+      /> */}
     </>
   );
 }

@@ -30,12 +30,10 @@ function getUserData(token) {
 }
 
 const sendOrder = (orderData) => {
-  const token = localStorage.getItem("token");
   return fetch(`${baseUrl}/orders`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(orderData),
   })
@@ -45,8 +43,22 @@ const sendOrder = (orderData) => {
     });
 };
 
+const sendMessage = (messageData) => {
+  return fetch(`${baseUrl}/messages`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(messageData),
+  })
+    .then((res) => res.json())
+    .catch((error) => {
+      console.error("Error sending message:", error);
+    });
+};
+
 const getToken = () => localStorage.getItem("jwt");
 
-export { getMenu, sendOrder, baseUrl, getToken, getUserData };
+export { getMenu, sendOrder, sendMessage, baseUrl, getToken, getUserData };
 
 // TODAY: Create api functions to interact with backend server

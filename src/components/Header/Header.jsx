@@ -46,7 +46,7 @@ function Header({ setSeeLoginModal, setSeeRegisterModal }) {
             <NavLink to="/about">About</NavLink>
           </li>
         </ul>
-        <span className="header__loc">
+        {/* <span className="header__loc">
           <NavLink to="/about">Find Location </NavLink>
           <img src={locIcon} alt="Location Icon" className="header__loc-icon" />
         </span>
@@ -76,7 +76,7 @@ function Header({ setSeeLoginModal, setSeeRegisterModal }) {
               </button>
             </>
           )}
-        </div>
+        </div> */}
       </div>
       {location.pathname === "/" && (
         <div className="header__order">

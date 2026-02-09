@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import arrowIcon from "../../assets/arrow.png";
 
 function ItemScreen({ cart, setCart, selectedCategory, menu }) {
-  const [size, setSize] = useState("");
+  const [size, setSize] = useState("M");
   const [animateCart, setAnimateCart] = useState(false);
   const [animateSize, setAnimateSize] = useState(false);
   const { id, category } = useParams();
@@ -40,6 +40,16 @@ function ItemScreen({ cart, setCart, selectedCategory, menu }) {
 
   if (!item) return <div>Item not found</div>;
 
+  // Get price based on size for drinks
+  const getPriceBySize = () => {
+    if (selectedCategory === "Drinks") {
+      return item[`price${size}`] || item.price;
+    }
+    return item.price;
+  };
+
+  const currentPrice = getPriceBySize();
+
   function handleAddToCart() {
     if (selectedCategory === "Drinks" && size === "") {
       setAnimateSize(true);
@@ -49,10 +59,17 @@ function ItemScreen({ cart, setCart, selectedCategory, menu }) {
 
     const cartItem = {
       ...item,
-      size: size,
+      price: currentPrice,
       instanceId: Date.now() + Math.random(),
     };
+
+    // Only add size property for drinks
+    if (selectedCategory === "Drinks") {
+      cartItem.size = size;
+    }
+
     setCart([...cart, cartItem]);
+    console.log(cart);
   }
 
   function handleSizeSelect(selectedSize) {
@@ -72,7 +89,10 @@ function ItemScreen({ cart, setCart, selectedCategory, menu }) {
         <img className="item-scrn__img" src={item.image} alt="" />
         <div className="item-scrn__name-price">
           <h1 className="item-scrn__title">{item.title}</h1>
-          <p className="item-scrn__price">${item.price}</p>
+          {selectedCategory === "Drinks" && (
+            <p className="item-scrn__size-display">Size: {size}</p>
+          )}
+          <p className="item-scrn__price">${currentPrice}</p>
           <div className="item-scrn__btn" onClick={() => handleAddToCart()}>
             <img src={bagIcon} alt="" className="item-scrn__btn-img" />
             <p className="item__screen-btn-text">Add To Cart</p>
