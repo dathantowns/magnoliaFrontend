@@ -8,8 +8,15 @@ function ItemScreen({ cart, setCart, selectedCategory, menu }) {
   const [size, setSize] = useState("M");
   const [animateCart, setAnimateCart] = useState(false);
   const [animateSize, setAnimateSize] = useState(false);
-  const { id, category } = useParams();
+  const params = useParams();
   const navigate = useNavigate();
+
+  // Handle both 3-param and 4-param routes
+  // 3-param: /menu/:category/:id (category products)
+  // 4-param: /menu/:category/:subcategory/:product (subcategory products)
+  const productParam = params.product || params.id;
+  const categoryParam = params.category;
+  const subcategoryParam = params.subcategory;
 
   useEffect(() => {
     setAnimateCart(true);
@@ -22,27 +29,63 @@ function ItemScreen({ cart, setCart, selectedCategory, menu }) {
   }
 
   if (!selectedCategory) {
-    selectedCategory = category
-      .split("-")
+    selectedCategory = categoryParam
+      ?.split("-")
       .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
       .join(" ");
   }
 
   let item;
 
+  // First, search in top-level category products
   for (const category of menu.categories) {
-    item = category.products.find(
-      (product) =>
-        product.title.toLowerCase().replace(/ /g, "-") === id.toString(),
-    );
-    if (item) break;
+    // Only check top-level products if no subcategory is specified
+    if (!subcategoryParam) {
+      item = category.products?.find(
+        (product) =>
+          product.title.toLowerCase().replace(/ /g, "-") ===
+          productParam?.toString(),
+      );
+      if (item) break;
+    }
+
+    // Then search in subcategories
+    if (category.subcategories) {
+      for (const subcategory of category.subcategories) {
+        // If we're viewing a specific subcategory, only check that one
+        if (subcategoryParam) {
+          const subcategoryTitle = subcategoryParam
+            ?.split("-")
+            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(" ");
+
+          if (subcategory.title === subcategoryTitle) {
+            item = subcategory.products?.find(
+              (product) =>
+                product.title.toLowerCase().replace(/ /g, "-") ===
+                productParam?.toString(),
+            );
+            if (item) break;
+          }
+        } else {
+          // Check all subcategories if no specific subcategory is selected
+          item = subcategory.products?.find(
+            (product) =>
+              product.title.toLowerCase().replace(/ /g, "-") ===
+              productParam?.toString(),
+          );
+          if (item) break;
+        }
+      }
+      if (item) break;
+    }
   }
 
   if (!item) return <div>Item not found</div>;
 
-  // Get price based on size for drinks
+  // Get price based on size for items with multiple prices
   const getPriceBySize = () => {
-    if (selectedCategory === "Drinks") {
+    if (item.priceM) {
       return item[`price${size}`] || item.price;
     }
     return item.price;
@@ -50,8 +93,10 @@ function ItemScreen({ cart, setCart, selectedCategory, menu }) {
 
   const currentPrice = getPriceBySize();
 
+  const currentDescription = item.description || null;
+
   function handleAddToCart() {
-    if (selectedCategory === "Drinks" && size === "") {
+    if (item.priceM && size === "") {
       setAnimateSize(true);
       setTimeout(() => setAnimateSize(false), 500);
       return;
@@ -63,8 +108,8 @@ function ItemScreen({ cart, setCart, selectedCategory, menu }) {
       instanceId: Date.now() + Math.random(),
     };
 
-    // Only add size property for drinks
-    if (selectedCategory === "Drinks") {
+    // Only add size property for items with multiple sizes
+    if (item.priceM) {
       cartItem.size = size;
     }
 
@@ -89,10 +134,13 @@ function ItemScreen({ cart, setCart, selectedCategory, menu }) {
         <img className="item-scrn__img" src={item.image} alt="" />
         <div className="item-scrn__name-price">
           <h1 className="item-scrn__title">{item.title}</h1>
-          {selectedCategory === "Drinks" && (
+          {item.priceM && (
             <p className="item-scrn__size-display">Size: {size}</p>
           )}
           <p className="item-scrn__price">${currentPrice}</p>
+          {currentDescription && (
+            <p className="item-scrn__description">{currentDescription}</p>
+          )}
           <div className="item-scrn__btn" onClick={() => handleAddToCart()}>
             <img src={bagIcon} alt="" className="item-scrn__btn-img" />
             <p className="item__screen-btn-text">Add To Cart</p>
@@ -100,7 +148,7 @@ function ItemScreen({ cart, setCart, selectedCategory, menu }) {
         </div>
       </div>
       <div className="item-scrn__cart-container">
-        {selectedCategory === "Drinks" && (
+        {item.priceM && (
           <div className="item-scrn__size-menu">
             <h2 className="item-scrn__size-title">Size Options</h2>
             <div className="item-scrn__sizes">

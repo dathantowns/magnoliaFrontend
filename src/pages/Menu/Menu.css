@@ -1,18 +1,181 @@
-/* DELETE THIS */
-
-.header__config {
-  color: #819981;
-  color: #eba158;
-  color: #ffe9d0;
+/* Loading Animation Styles */
+.loading {
+  min-height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* DELETE tHIS */
+.loading__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2vh;
+}
+
+.loading__spinner {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  animation: spin 2.5s linear infinite;
+}
+
+.loading__cookie {
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    ellipse at 30% 30%,
+    #e8c9a0,
+    #c4956a 60%,
+    #a67c52
+  );
+  border-radius: 50%;
+  position: relative;
+  box-shadow:
+    0 6px 20px rgba(139, 105, 20, 0.35),
+    inset 0 -5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Chocolate chips - cuter placement */
+.loading__cookie::before,
+.loading__cookie::after,
+.loading__chip1,
+.loading__chip2,
+.loading__chip3 {
+  content: "";
+  position: absolute;
+  background: #4a3728;
+  border-radius: 50%;
+}
+
+.loading__cookie::before {
+  width: 14px;
+  height: 12px;
+  top: 28%;
+  left: 25%;
+  transform: rotate(-15deg);
+}
+
+.loading__cookie::after {
+  width: 12px;
+  height: 10px;
+  top: 55%;
+  left: 65%;
+  transform: rotate(20deg);
+}
+
+.loading__chip1 {
+  width: 10px;
+  height: 8px;
+  top: 40%;
+  left: 45%;
+  transform: rotate(5deg);
+}
+
+.loading__chip2 {
+  width: 8px;
+  height: 7px;
+  top: 20%;
+  left: 55%;
+  transform: rotate(-30deg);
+}
+
+.loading__chip3 {
+  width: 11px;
+  height: 9px;
+  top: 65%;
+  left: 35%;
+  transform: rotate(10deg);
+}
+
+.loading__crumbs {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.loading__crumbs span {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  background: linear-gradient(135deg, #d4a574, #c4956a);
+  border-radius: 50%;
+  animation: fall 1.8s ease-in-out infinite;
+}
+
+.loading__crumbs span:nth-child(1) {
+  left: 8%;
+  top: 15%;
+  animation-delay: 0s;
+}
+
+.loading__crumbs span:nth-child(2) {
+  left: 55%;
+  top: 8%;
+  animation-delay: 0.4s;
+}
+
+.loading__crumbs span:nth-child(3) {
+  left: 85%;
+  top: 18%;
+  animation-delay: 0.8s;
+}
+
+.loading__crumbs span:nth-child(4) {
+  left: 25%;
+  top: 0%;
+  animation-delay: 1.2s;
+}
+
+.loading__text {
+  font-family: "Pacifico", cursive;
+  font-size: 1.8rem;
+  color: #eba158;
+  margin: 0;
+  animation: pulse 1.5s ease-in-out infinite;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(120px) rotate(180deg) scale(0.4);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.02);
+  }
+}
 
 .menu {
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: #ffe9d0;
+  min-height: 90vh;
 }
 
 .menu__title {
@@ -27,6 +190,6 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 0vw;
+  gap: 1vw;
   margin: 5vh 0;
 }

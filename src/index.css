@@ -1,5 +1,10 @@
 body {
   margin: 0;
+  overflow-x: hidden;
+}
+
+html {
+  overflow-x: hidden;
 }
 @media (prefers-color-scheme: light) {
   :root {

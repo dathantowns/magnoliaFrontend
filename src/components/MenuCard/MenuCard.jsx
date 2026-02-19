@@ -1,12 +1,24 @@
 import "./MenuCard.css";
 import { useNavigate } from "react-router-dom";
 
-function MenuCard({ title, image, url, setSelectedCategory, categoryId }) {
+function MenuCard({
+  title,
+  image,
+  url,
+  setSelectedCategory,
+  categoryId,
+  isSubcategory,
+}) {
   const navigate = useNavigate();
 
   const handleClick = () => {
+    if (isSubcategory && setSelectedCategory) {
+      // For subcategories, we want to keep the parent category selected
+      setSelectedCategory(title);
+    } else if (setSelectedCategory) {
+      setSelectedCategory(title);
+    }
     navigate(url);
-    setSelectedCategory(title);
   };
 
   return (

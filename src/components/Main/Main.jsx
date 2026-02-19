@@ -30,6 +30,23 @@ function Main({ cart, setCart, menu, selectedCategory, setSelectedCategory }) {
           }
         />
         <Route
+          path="/menu/:category/:subcategory/:product"
+          element={
+            <ItemScreen
+              cart={cart}
+              setCart={setCart}
+              selectedCategory={selectedCategory}
+              menu={menu}
+            />
+          }
+        />
+        <Route
+          path="/menu/:category/:subcategory"
+          element={
+            <MenuCategory selectedCategory={selectedCategory} menu={menu} />
+          }
+        />
+        <Route
           path="/menu/:category/:id"
           element={
             <ItemScreen
