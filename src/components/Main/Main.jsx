@@ -30,7 +30,14 @@ function Main({ cart, setCart, menu, selectedCategory, setSelectedCategory }) {
           }
         />
         <Route
-          path="/menu/:category/:subcategory/:product"
+          path="/menu/:category/:subcategory"
+          element={
+            <MenuCategory selectedCategory={selectedCategory} menu={menu} />
+          }
+        />
+        {/* 4-param route for direct category products - uses "item" prefix */}
+        <Route
+          path="/menu/:category/item/:product"
           element={
             <ItemScreen
               cart={cart}
@@ -40,14 +47,9 @@ function Main({ cart, setCart, menu, selectedCategory, setSelectedCategory }) {
             />
           }
         />
+        {/* 4-param route for subcategory products */}
         <Route
-          path="/menu/:category/:subcategory"
-          element={
-            <MenuCategory selectedCategory={selectedCategory} menu={menu} />
-          }
-        />
-        <Route
-          path="/menu/:category/:id"
+          path="/menu/:category/:subcategory/:product"
           element={
             <ItemScreen
               cart={cart}

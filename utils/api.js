@@ -7,7 +7,7 @@ export const checkRes = (res) => {
 
 const baseUrl =
   process.env.NODE_ENV === "production"
-    ? "https://your-production-url.com"
+    ? "https://api.magnoliapp.keecha.com"
     : "http://localhost:3001";
 
 const getMenu = () => {

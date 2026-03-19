@@ -14,3 +14,29 @@
   transition: all 0.3s ease;
   width: 45px;
 }
+
+/* Mobile breakpoint */
+@media (max-width: 768px) {
+  .back-btn {
+    top: 13vh;
+    left: 4vh;
+    width: 30px;
+  }
+
+  .back-btn:hover {
+    width: 32px;
+  }
+}
+
+/* Small mobile breakpoint */
+@media (max-width: 480px) {
+  .back-btn {
+    top: 13vh;
+    left: 4vh;
+    width: 30px;
+  }
+
+  .back-btn:hover {
+    width: 32px;
+  }
+}

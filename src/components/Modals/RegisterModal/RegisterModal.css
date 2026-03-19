@@ -201,3 +201,108 @@
   font-size: 14px;
   font-weight: 500;
 }
+
+/* Tablet breakpoint */
+@media (max-width: 1024px) {
+  .register-modal__container {
+    width: 400px;
+    height: auto;
+    padding: 24px 40px 0;
+  }
+
+  .register-modal__title {
+    font-size: 20px;
+  }
+}
+
+/* Mobile breakpoint */
+@media (max-width: 768px) {
+  .register-modal__container {
+    width: 90vw;
+    max-width: 400px;
+    height: auto;
+    padding: 20px 30px 0;
+    margin: 0 2vw;
+  }
+
+  .register-modal__header {
+    margin: 0 0 20px 0;
+  }
+
+  .register-modal__title {
+    font-size: 18px;
+  }
+
+  .register-modal__label {
+    margin-bottom: 6px;
+    font-size: 14px;
+  }
+
+  .register-modal__input {
+    margin-top: 6px;
+    margin-bottom: 20px;
+    padding: 3px 0;
+    font-size: 14px;
+  }
+
+  .register-modal__buttons {
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .register-modal__save-btn {
+    width: 100%;
+    max-width: 200px;
+    margin: 0 auto 16px;
+    display: block;
+    text-align: center;
+    padding: 10px 20px;
+  }
+
+  .register-modal__login-btn {
+    position: static;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 14px;
+  }
+}
+
+/* Small mobile breakpoint */
+@media (max-width: 480px) {
+  .register-modal__container {
+    width: 95vw;
+    max-width: 350px;
+    padding: 16px 20px 0;
+    border-radius: 6px;
+  }
+
+  .register-modal__title {
+    font-size: 16px;
+  }
+
+  .register-modal__label {
+    font-size: 13px;
+  }
+
+  .register-modal__input {
+    font-size: 13px;
+    margin-bottom: 16px;
+  }
+
+  .register-modal__save-btn {
+    font-size: 14px;
+    padding: 8px 16px;
+    max-width: 150px;
+  }
+
+  .register-modal__login-btn {
+    font-size: 13px;
+  }
+
+  .register-modal__error {
+    font-size: 12px;
+    padding: 10px;
+  }
+}

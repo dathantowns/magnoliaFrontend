@@ -194,3 +194,97 @@
   font-size: 14px;
   font-weight: 500;
 }
+
+/* Tablet breakpoint */
+@media (max-width: 1024px) {
+  .login-modal__container {
+    max-width: 400px;
+    padding: 24px 40px 0;
+  }
+
+  .login-modal__title {
+    font-size: 20px;
+  }
+}
+
+/* Mobile breakpoint */
+@media (max-width: 768px) {
+  .login-modal__container {
+    max-width: 90vw;
+    padding: 20px 30px 0;
+    margin: 0 2vw;
+  }
+
+  .login-modal__header {
+    margin: 0 0 20px 0;
+  }
+
+  .login-modal__title {
+    font-size: 18px;
+  }
+
+  .login-modal__label {
+    margin-bottom: 6px;
+    font-size: 14px;
+  }
+
+  .login-modal__input {
+    margin-bottom: 20px;
+    padding: 3px 0;
+    font-size: 14px;
+  }
+
+  .login-modal__save-btn {
+    width: 100%;
+    max-width: 150px;
+    margin: 0 auto 20px;
+    display: block;
+    text-align: center;
+    padding: 10px 20px;
+  }
+
+  .login-modal__register-btn {
+    position: static;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 14px;
+  }
+}
+
+/* Small mobile breakpoint */
+@media (max-width: 480px) {
+  .login-modal__container {
+    max-width: 95vw;
+    padding: 16px 20px 0;
+    border-radius: 6px;
+  }
+
+  .login-modal__title {
+    font-size: 16px;
+  }
+
+  .login-modal__label {
+    font-size: 13px;
+  }
+
+  .login-modal__input {
+    font-size: 13px;
+    margin-bottom: 16px;
+  }
+
+  .login-modal__save-btn {
+    font-size: 14px;
+    padding: 8px 16px;
+    max-width: 120px;
+  }
+
+  .login-modal__register-btn {
+    font-size: 13px;
+  }
+
+  .login-modal__error {
+    font-size: 12px;
+    padding: 10px;
+  }
+}

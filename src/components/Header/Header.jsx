@@ -3,8 +3,9 @@ import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import { useUser } from "../../../utils/contexts/userContext";
 import lightLogo from "../../assets/lightlogo.png";
 import locIcon from "../../assets/location.png";
+import paperBagIcon from "../../assets/paper-bag.png";
 
-function Header({ setSeeLoginModal, setSeeRegisterModal }) {
+function Header({ cart, setSeeLoginModal, setSeeRegisterModal }) {
   const navigate = useNavigate();
   const location = useLocation();
   const { user, isLoggedIn, setUser, setIsLoggedIn, setToken } = useUser();
@@ -46,6 +47,15 @@ function Header({ setSeeLoginModal, setSeeRegisterModal }) {
             <NavLink to="/about">About</NavLink>
           </li>
         </ul>
+        <div
+          className="header__cart-container"
+          onClick={() => navigate("/cart")}
+        >
+          <img src={paperBagIcon} alt="Cart" className="header__cart-icon" />
+          {cart.length > 0 && (
+            <span className="header__cart-badge">{cart.length}</span>
+          )}
+        </div>
         {/* <span className="header__loc">
           <NavLink to="/about">Find Location </NavLink>
           <img src={locIcon} alt="Location Icon" className="header__loc-icon" />

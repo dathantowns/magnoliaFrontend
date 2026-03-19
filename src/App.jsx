@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import Main from "./components/Main/Main";
-import mockMenu from "./mockItemDB";
 import LoginModal from "./components/Modals/LoginModal/LoginModal";
 import RegisterModal from "./components/Modals/RegisterModal/RegisterModal";
 import { getUserData, getMenu } from "../utils/api";
@@ -101,6 +100,7 @@ function App() {
       <UserProvider>
         <Header
           cart={cart}
+          setCart={setCart}
           setSeeLoginModal={setSeeLoginModal}
           setSeeRegisterModal={setSeeRegisterModal}
         />

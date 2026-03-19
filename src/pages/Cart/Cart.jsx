@@ -13,10 +13,34 @@ function Cart({ cart, setCart }) {
   const [nameError, setNameError] = useState(false);
   const [phoneError, setPhoneError] = useState(false);
 
-  function handleRemoveItem(index) {
-    const newCart = [...cart];
-    newCart.splice(index, 1);
-    setCart(newCart);
+  // Group cart items by title and size
+  const groupedCart = cart.reduce((groups, item) => {
+    const key = `${item.title}-${item.size || "no-size"}`;
+    if (!groups[key]) {
+      groups[key] = {
+        ...item,
+        quantity: 1,
+        instanceIds: [item.instanceId],
+      };
+    } else {
+      groups[key].quantity += 1;
+      groups[key].instanceIds.push(item.instanceId);
+    }
+    return groups;
+  }, {});
+
+  const groupedCartItems = Object.values(groupedCart);
+
+  function handleRemoveItem(item) {
+    const key = `${item.title}-${item.size || "no-size"}`;
+    const itemIndex = cart.findIndex(
+      (cartItem) => cartItem.instanceId === item.instanceIds[0],
+    );
+    if (itemIndex > -1) {
+      const newCart = [...cart];
+      newCart.splice(itemIndex, 1);
+      setCart(newCart);
+    }
   }
 
   function handlePlaceOrder() {
@@ -89,9 +113,9 @@ function Cart({ cart, setCart }) {
       ) : (
         <div className="cart__details">
           <TransitionGroup component="ul" className="cart__items">
-            {cart.map((item, index) => (
+            {groupedCartItems.map((item, index) => (
               <CSSTransition
-                key={item.instanceId}
+                key={`${item.title}-${item.size || "no-size"}`}
                 timeout={300}
                 classNames="fade"
               >
@@ -100,7 +124,7 @@ function Cart({ cart, setCart }) {
                     src={trashIcon}
                     alt="trash"
                     className="cart__item-trash-btn"
-                    onClick={() => handleRemoveItem(index)}
+                    onClick={() => handleRemoveItem(item)}
                   />
                   <img
                     src={item.image}
@@ -113,6 +137,11 @@ function Cart({ cart, setCart }) {
                       <p className="cart__item-size">Size: {item.size}</p>
                     )}
                     <p className="cart__item-price">${item.price}</p>
+                    {item.quantity > 1 && (
+                      <span className="cart__item-quantity">
+                        x{item.quantity}
+                      </span>
+                    )}
                   </div>
                 </li>
               </CSSTransition>

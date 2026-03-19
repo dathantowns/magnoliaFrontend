@@ -45,9 +45,12 @@
 }
 
 .home__card-btn {
-  width: 150px;
-  height: 60px;
+  width: auto;
+  min-width: 150px;
+  height: auto;
+  min-height: 60px;
   padding: 1vh 2vh;
+  margin-bottom: 1vh;
   font-size: 16px;
   font-family: "Oswald", sans-serif;
   background: none;
@@ -55,6 +58,9 @@
   border-radius: 40px;
   cursor: pointer;
   color: #ffe9d0;
+  white-space: normal;
+  text-align: center;
+  word-wrap: break-word;
 }
 
 .home__card-btn:hover {
@@ -67,4 +73,148 @@
   background-color: #ffe9d0;
   color: #eba158;
   transition: all 0.5s ease;
+}
+
+/* Tablet breakpoint */
+@media (max-width: 1024px) {
+  .home__card {
+    height: 80vh;
+  }
+
+  .home__card-img {
+    width: 40vw;
+    height: 80vh;
+  }
+
+  .home__card-content {
+    width: 40vw;
+    margin-left: 10vw;
+  }
+
+  .home__card-content_reverse {
+    margin-right: 10vw;
+  }
+
+  .home__card-title {
+    font-size: 48px;
+    margin-bottom: 4vh;
+  }
+
+  .home__card-text {
+    font-size: 25px;
+    margin-bottom: 4vh;
+  }
+
+  .home__card-btn {
+    width: auto;
+    min-width: 180px;
+    height: auto;
+    min-height: 65px;
+    padding: 1vh 2vh;
+    font-size: 20px;
+    white-space: nowrap;
+    text-align: center;
+    word-wrap: break-word;
+  }
+}
+
+/* Mobile breakpoint */
+@media (max-width: 768px) {
+  .home__card {
+    height: 80vh;
+  }
+
+  .home__card-img {
+    width: 40vw;
+    height: 80vh;
+  }
+
+  .home__card-content {
+    width: 40vw;
+    margin-left: 10vw;
+  }
+
+  .home__card-content_reverse {
+    width: 40vw;
+    margin-right: 10vw;
+    margin-left: 0;
+  }
+
+  .home__card-title {
+    font-size: 48px;
+    margin-bottom: 4vh;
+  }
+
+  .home__card-text {
+    font-size: 25px;
+    margin-bottom: 4vh;
+  }
+
+  .home__card-btn {
+    width: auto;
+    min-width: 180px;
+    height: auto;
+    min-height: 65px;
+    padding: 1vh 2vh;
+    font-size: 20px;
+    white-space: nowrap;
+    text-align: center;
+    word-wrap: break-word;
+  }
+}
+
+/* Small mobile breakpoint */
+@media (max-width: 480px) {
+  .home__card {
+    flex-direction: row;
+    height: 45vh;
+    margin-top: 2vh;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .home__card-img {
+    width: 45vw;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .home__card_reverse .home__card-img {
+    width: 50vw;
+    margin-right: 0;
+  }
+
+  .home__card-content {
+    width: 45vw;
+    margin-left: 5vw;
+    margin-top: 0;
+    padding: 0;
+  }
+
+  .home__card-content_reverse {
+    width: 45vw;
+    margin-right: 5vw;
+    margin-left: 0;
+    margin-top: 0;
+    padding: 0;
+    text-align: right;
+  }
+
+  .home__card-title {
+    font-size: 16px;
+    margin-bottom: 1vh;
+  }
+
+  .home__card-text {
+    font-size: 10px;
+    margin-bottom: 1vh;
+  }
+
+  .home__card-btn {
+    width: 70px;
+    height: 30px;
+    font-size: 9px;
+    border-width: 2px;
+    margin-top: 2vh;
+  }
 }

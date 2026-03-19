@@ -152,16 +152,18 @@ function ItemScreen({ cart, setCart, selectedCategory, menu }) {
           <div className="item-scrn__size-menu">
             <h2 className="item-scrn__size-title">Size Options</h2>
             <div className="item-scrn__sizes">
-              <div
-                className={
-                  size === "S"
-                    ? "item-scrn__size-option item-scrn__size-option_active"
-                    : `item-scrn__size-option${animateSize ? " grow" : ""}`
-                }
-                onClick={() => handleSizeSelect("S")}
-              >
-                S
-              </div>
+              {item.priceS && (
+                <div
+                  className={
+                    size === "S"
+                      ? "item-scrn__size-option item-scrn__size-option_active"
+                      : `item-scrn__size-option${animateSize ? " grow" : ""}`
+                  }
+                  onClick={() => handleSizeSelect("S")}
+                >
+                  S
+                </div>
+              )}
               <div
                 className={
                   size === "M"
@@ -172,16 +174,18 @@ function ItemScreen({ cart, setCart, selectedCategory, menu }) {
               >
                 M
               </div>
-              <div
-                className={
-                  size === "L"
-                    ? "item-scrn__size-option item-scrn__size-option_active"
-                    : `item-scrn__size-option${animateSize ? " grow" : ""}`
-                }
-                onClick={() => handleSizeSelect("L")}
-              >
-                L
-              </div>
+              {item.priceL && (
+                <div
+                  className={
+                    size === "L"
+                      ? "item-scrn__size-option item-scrn__size-option_active"
+                      : `item-scrn__size-option${animateSize ? " grow" : ""}`
+                  }
+                  onClick={() => handleSizeSelect("L")}
+                >
+                  L
+                </div>
+              )}
             </div>
           </div>
         )}

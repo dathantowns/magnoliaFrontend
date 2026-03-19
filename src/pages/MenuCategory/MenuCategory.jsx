@@ -40,7 +40,7 @@ function MenuCategory({ menu, selectedCategory }) {
   let showBackButton = subcategoryParam !== undefined;
 
   if (subcategoryParam) {
-    // Viewing a subcategory - get products from the subcategory
+    // Check if the param matches a subcategory title
     const subcategoryTitle = subcategoryParam
       ?.split("-")
       .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
@@ -51,9 +51,29 @@ function MenuCategory({ menu, selectedCategory }) {
     );
 
     if (subcategory) {
+      // It's a valid subcategory - show products from subcategory
       products = subcategory.products || [];
       displayTitle = subcategoryTitle;
       showBackButton = true;
+    } else {
+      // Not a subcategory - check if it matches a product title
+      const productParam = subcategoryParam;
+      const matchedProduct = category.products?.find(
+        (product) =>
+          product.title.toLowerCase().replace(/ /g, "-") === productParam,
+      );
+
+      if (matchedProduct) {
+        // It's a product directly in the category - navigate to ItemScreen
+        navigate(
+          `/menu/${selectedCategory.toLowerCase().replace(/ /g, "-")}/item/${productParam}`,
+        );
+        return null;
+      } else {
+        // Not found - show subcategories or empty
+        products = [];
+        showBackButton = true;
+      }
     }
   } else if (hasSubcategories) {
     // Category has subcategories - display them instead of products
@@ -91,13 +111,13 @@ function MenuCategory({ menu, selectedCategory }) {
                   url={`/menu/${selectedCategory.toLowerCase().replace(/ /g, "-")}/${subcategoryParam}/${product.title.toLowerCase().replace(/ /g, "-")}`}
                 />
               ))
-            : // Display products in category - use 3-part URL
+            : // Display products in category - use 4-part URL with "item" prefix
               products.map((product, index) => (
                 <MenuCard
                   key={index}
                   title={product.title}
                   image={product.image}
-                  url={`/menu/${selectedCategory.toLowerCase().replace(/ /g, "-")}/${product.title.toLowerCase().replace(/ /g, "-")}`}
+                  url={`/menu/${selectedCategory.toLowerCase().replace(/ /g, "-")}/item/${product.title.toLowerCase().replace(/ /g, "-")}`}
                 />
               ))}
       </div>
